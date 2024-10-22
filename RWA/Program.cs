@@ -26,24 +26,13 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowSpecificOrigins",
         builder => builder
-         .WithOrigins("https://192.168.29.20:7031") // Allow both localhost and LAN URL
+        .WithOrigins("http://192.168.29.20:7031") // Allow both localhost and LAN URL
         .AllowAnyOrigin()
         .AllowAnyHeader()
-            .AllowAnyMethod());
-            //.AllowCredentials());  // Include this if credentials (e.g., cookies) are involved
+        .AllowAnyMethod());
+    //.AllowCredentials());  // Include this if credentials (e.g., cookies) are involved
 });
 
-/*
-// Configure Kestrel for HTTP and HTTPS
-builder.WebHost.ConfigureKestrel(options =>
-{
-    options.ListenAnyIP(5077); // HTTP port
-    options.ListenAnyIP(7031, listenOptions =>
-    {
-        listenOptions.UseHttps(); // HTTPS port with default dev certificate
-    });
-});
-*/
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -55,6 +44,9 @@ if (app.Environment.IsDevelopment())
 
 // Apply the CORS policy globally
 app.UseCors("AllowSpecificOrigins");
+
+// Serve static files from the wwwroot folder
+app.UseStaticFiles(); // <-- This is the key line to serve static files like images
 
 app.UseHttpsRedirection();
 

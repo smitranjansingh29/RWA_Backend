@@ -55,6 +55,8 @@ namespace RWA.Controllers
             });
         }
 
+
+
         // Method to generate a random alphanumeric password
         private string GenerateRandomPassword(int length)
         {

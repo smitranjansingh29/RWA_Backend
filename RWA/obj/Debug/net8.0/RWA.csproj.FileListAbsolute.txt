@@ -139,3 +139,10 @@ E:\companywork\RWA\RWA\RWA\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Runti
 E:\companywork\RWA\RWA\RWA\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
 E:\companywork\RWA\RWA\RWA\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
 E:\companywork\RWA\RWA\RWA\bin\Debug\net8.0\BCrypt.Net-Next.dll
+E:\companywork\RWA\RWA\RWA\bin\Debug\net8.0\RWA.staticwebassets.runtime.json
+E:\companywork\RWA\RWA\RWA\bin\Debug\net8.0\iTextSharp.LGPLv2.Core.dll
+E:\companywork\RWA\RWA\RWA\bin\Debug\net8.0\SkiaSharp.dll
+E:\companywork\RWA\RWA\RWA\bin\Debug\net8.0\runtimes\osx\native\libSkiaSharp.dylib
+E:\companywork\RWA\RWA\RWA\bin\Debug\net8.0\runtimes\win-arm64\native\libSkiaSharp.dll
+E:\companywork\RWA\RWA\RWA\bin\Debug\net8.0\runtimes\win-x64\native\libSkiaSharp.dll
+E:\companywork\RWA\RWA\RWA\bin\Debug\net8.0\runtimes\win-x86\native\libSkiaSharp.dll

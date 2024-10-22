@@ -100,5 +100,41 @@ namespace RWA.Controllers
         {
             return inputPassword == storedPassword;
         }
+
+        [HttpPost("forgotPassword")]
+        public async Task<IActionResult> ForgotPassword([FromBody] ForgotPasswordRequest request)
+        {
+            var tenant = _context.Tenants.FirstOrDefault(t => t.TenMail == request.Email);
+
+            if (tenant == null)
+            {
+                return Unauthorized("Email not found");
+            }
+
+            // Generate a new password
+            string newPassword = GenerateRandomPassword();
+
+            // Update the user's password in the database
+            tenant.TenPassword = newPassword; // Ideally, you should hash the password
+            _context.SaveChanges();
+
+            // Send the new password to the user's email
+            await _smtpService.SendEmailAsync(request.Email, "Your New Password", $"Your new password is: {newPassword}");
+
+            return Ok("A new password has been sent to your email.");
+        }
+
+        private string GenerateRandomPassword(int length = 8)
+        {
+            const string validChars = "ABCDEFGHJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+            Random random = new Random();
+            char[] chars = new char[length];
+            for (int i = 0; i < length; i++)
+            {
+                chars[i] = validChars[random.Next(validChars.Length)];
+            }
+            return new string(chars);
+        }
+
     }
 }

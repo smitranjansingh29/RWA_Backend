@@ -47,6 +47,42 @@ namespace RWA.Migrations
                     b.ToTable("Owners");
                 });
 
+            modelBuilder.Entity("RWA.Models.ProfilePage", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Bio")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CoverPhoto")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Interests")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Location")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ProfilePhoto")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TenantIdOriginal")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Work")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("TenantIdOriginal");
+
+                    b.ToTable("ProfilePages");
+                });
+
             modelBuilder.Entity("RWA.Models.Tenant", b =>
                 {
                     b.Property<int>("TenantId")
@@ -96,22 +132,130 @@ namespace RWA.Migrations
 
             modelBuilder.Entity("RWA.Models.TenantDetails", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int?>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("Id"));
+
+                    b.Property<string>("AmtOfAnnFee")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("AmtOfMemFee")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("AnnFav")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("AnnFeesNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("AnnYear")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CasteCert")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DateOfAnnFee")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DateOfMemFee")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DecisionDate")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DecisionMemberAddress")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DecisionMemberAge")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DecisionMemberFather")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DecisionMemberName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DecisionMemberType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DecisionPlace")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DeedCopy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MemAddress")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MemAge")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MemFatherName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MemFav")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MemFeesNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MemName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NameOfTenFather")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ProofDOBDoc")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RDate")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RMemName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RMemNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RPlace")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ResolutionNumber")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("TenAdhar")
-                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TenCaste")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TenCorAddress")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("TenDOB")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("TenOcc")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("TenPAN")
-                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TenPOA")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TenPOI")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TenPerAddress")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TenPhoto")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("TenPoliceVer")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("TenantIdOriginal")
@@ -120,9 +264,18 @@ namespace RWA.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("TenantIdOriginal");
-
                     b.ToTable("TenantDetails");
+                });
+
+            modelBuilder.Entity("RWA.Models.ProfilePage", b =>
+                {
+                    b.HasOne("RWA.Models.TenantDetails", "TenantDetails")
+                        .WithMany()
+                        .HasForeignKey("TenantIdOriginal")
+                        .HasPrincipalKey("TenantIdOriginal")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.Navigation("TenantDetails");
                 });
 
             modelBuilder.Entity("RWA.Models.TenantDetails", b =>

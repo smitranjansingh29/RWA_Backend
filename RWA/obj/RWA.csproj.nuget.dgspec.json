@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\companywork\\RWA\\RWA\\RWA\\RWA.csproj": {}
+    "E:\\companywork\\RWA\\RWA_Backend\\RWA_Backend\\RWA\\RWA.csproj": {}
   },
   "projects": {
-    "E:\\companywork\\RWA\\RWA\\RWA\\RWA.csproj": {
+    "E:\\companywork\\RWA\\RWA_Backend\\RWA_Backend\\RWA\\RWA.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\companywork\\RWA\\RWA\\RWA\\RWA.csproj",
+        "projectUniqueName": "E:\\companywork\\RWA\\RWA_Backend\\RWA_Backend\\RWA\\RWA.csproj",
         "projectName": "RWA",
-        "projectPath": "E:\\companywork\\RWA\\RWA\\RWA\\RWA.csproj",
+        "projectPath": "E:\\companywork\\RWA\\RWA_Backend\\RWA_Backend\\RWA\\RWA.csproj",
         "packagesPath": "C:\\Users\\MM IT SOLUTION\\.nuget\\packages\\",
-        "outputPath": "E:\\companywork\\RWA\\RWA\\RWA\\obj\\",
+        "outputPath": "E:\\companywork\\RWA\\RWA_Backend\\RWA_Backend\\RWA\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\MM IT SOLUTION\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -76,6 +76,10 @@
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.4.0, )"
+            },
+            "iTextSharp.LGPLv2.Core": {
+              "target": "Package",
+              "version": "[3.4.22, )"
             }
           },
           "imports": [
