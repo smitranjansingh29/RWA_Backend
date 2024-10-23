@@ -96,6 +96,7 @@ namespace RWA.Controllers
                 return Ok(existingProfilePage);
             }
 
+            // This part will only execute if there is no existing profile page
             // Upload new cover photo and profile photo if new profile
             profilePage.CoverPhoto = await UploadFile(coverPhotoFile);
             profilePage.ProfilePhoto = await UploadFile(profilePhotoFile);
@@ -109,6 +110,7 @@ namespace RWA.Controllers
 
             return Ok(profilePage);
         }
+
 
 
         // PUT: api/ProfilePage/{tenantIdOriginal}
