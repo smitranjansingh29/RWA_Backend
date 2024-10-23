@@ -8,7 +8,8 @@ namespace RWA.Models
         public string? TenantIdOriginal { get; set; } // Foreign key connected to TenantDetails
         public string? CoverPhoto { get; set; } // Path to cover photo file
         public string? ProfilePhoto { get; set; } // Path to profile photo file
-        public string? Interests { get; set; } // User interests
+        public List<string> Interests { get; set; } = new List<string>();  // Ensure this is List<string>
+
         public string? Bio { get; set; } // Bio section
         public string? Work { get; set; } // Work details
         public string? Location { get; set; } // User's location

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RWA.Data;
 
@@ -11,9 +12,11 @@ using RWA.Data;
 namespace RWA.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20241022110053_ConvertInterestsToListCorrection")]
+    partial class ConvertInterestsToListCorrection
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,46 +24,6 @@ namespace RWA.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-            modelBuilder.Entity("RWA.Models.Inventory", b =>
-                {
-                    b.Property<int>("InvId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("InvId"));
-
-                    b.Property<string>("Category")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("InvProduct")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("InvProductDesc")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("InvProductName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("InvProductPrice")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("PurchaseDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("PurchasePrice")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PurchaseWarranty")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PurchaseWhere")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("InvId");
-
-                    b.ToTable("Inventories");
-                });
 
             modelBuilder.Entity("RWA.Models.Owner", b =>
                 {

@@ -1,4 +1,4 @@
-﻿using RWA.Models;
+﻿using RWA.Models;// Import the Inventory model
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
@@ -13,17 +13,21 @@ namespace RWA.Data
         public DbSet<TenantDetails> TenantDetails { get; set; }
         public DbSet<ProfilePage> ProfilePages { get; set; }
 
+        // New DbSet for Inventory
+        public DbSet<Inventory> Inventories { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            // Configure the relationship between TenantDetails and Tenant using TenantIdOriginal
+            modelBuilder.Entity<Inventory>()
+                .HasKey(i => i.InvId);
+            // Existing TenantDetails and ProfilePage configurations
             modelBuilder.Entity<TenantDetails>()
                 .HasOne(td => td.Tenant)
-                .WithMany()  // Tenant doesn't need a navigation property to TenantDetails
-                .HasPrincipalKey(t => t.TenantIdOriginal)  // Set TenantIdOriginal as the principal key
-                .HasForeignKey(td => td.TenantIdOriginal)  // Set TenantIdOriginal as the foreign key
-                .OnDelete(DeleteBehavior.Restrict);  // Optional: prevent cascading delete
+                .WithMany()
+                .HasPrincipalKey(t => t.TenantIdOriginal)
+                .HasForeignKey(td => td.TenantIdOriginal)
+                .OnDelete(DeleteBehavior.Restrict);
 
-            // Configure the relationship between ProfilePage and TenantDetails using TenantIdOriginal
             modelBuilder.Entity<ProfilePage>()
                 .HasOne(pp => pp.TenantDetails)
                 .WithMany()
@@ -38,10 +42,26 @@ namespace RWA.Data
                                        .Where(t => t.State == EntityState.Added)
                                        .ToList();
 
+            // Ensure TenantIdOriginal generation
             foreach (var tenant in tenants)
             {
                 int maxTenantId = await Tenants.MaxAsync(t => (int?)t.TenantId) ?? 0;
                 tenant.Entity.TenantIdOriginal = $"TEN{(maxTenantId + 1).ToString("D6")}";
+            }
+
+            // Inventory ID generation logic
+            var inventories = ChangeTracker.Entries<Inventory>()
+                                           .Where(i => i.State == EntityState.Added)
+                                           .ToList();
+
+            foreach (var inventory in inventories)
+            {
+                // Generate new InvProduct ID if not set
+                if (string.IsNullOrEmpty(inventory.Entity.InvProduct))
+                {
+                    int maxProductId = await Inventories.MaxAsync(i => (int?)i.InvId) ?? 0;  // Assuming an `Id` field exists for the numeric part
+                    inventory.Entity.InvProduct = $"INV{(maxProductId + 1).ToString("D6")}";
+                }
             }
 
             return await base.SaveChangesAsync(cancellationToken);
